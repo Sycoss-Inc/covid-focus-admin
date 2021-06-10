@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import firebase from "firebase/app";
-import "firebase/auth";
 // Pages
 import Login from "./pages/Login/Login";
 import Admin from "./pages/Admin/Admin";
 import Error from "./pages/Error/Error";
-// Config
-import firebaseConfig from "./config/firebase.config";
-
-firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
