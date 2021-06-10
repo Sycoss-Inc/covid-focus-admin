@@ -5,7 +5,8 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Dashboard from "../Dashboard/Dashboard";
 import Panchayat from "../Panchayat/Panchayat";
 import Ward from "../Ward/Ward";
-import Contact from "../Contact/Contact";
+import Needs from "../Needs/Needs";
+import Notices from "../Notices/Notices";
 
 function Admin(props) {
   return (
@@ -18,7 +19,8 @@ function Admin(props) {
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/panchayat" exact component={Panchayat} />
             <Route path="/ward" exact component={Ward} />
-            <Route path="/contact" exact component={Contact} />
+            <Route path="/needs" exact component={Needs} />
+            <Route path="/notices" exact component={Notices} />
             <Redirect path="*" to="/dashboard" />
           </Switch>
         </div>

@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
-import firebase from "firebase/app";
-import "firebase/database";
 //Components
 import Loader from "../Loaders/FormLoader";
 
-function ContactForm(props) {
+function NeedsForm({ setAddNew, setAlert, fetchData, data, edit }) {
   const [state, setState] = useState({
-    name: "",
-    phno: "",
+    title: "",
+    description: "",
   });
-  const [edit, setEdit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadPercent, setUploadPercent] = useState(0);
 
+  let localData = window.localStorage.getItem("auth_data");
+  if (!localData) localData = window.sessionStorage.getItem("auth_data");
+  localData = JSON.parse(localData);
+
   useEffect(() => {
-    if (props.Key) {
-      setEdit(true);
+    if (edit) {
       setState({
-        name: props.name,
-        phno: props.phno,
+        title: data.title,
+        description: data.description,
       });
     }
-  }, [props.Key, props.name, props.phno]);
+  }, [data, edit]);
 
   const formHandler = (e) => {
     setState({ ...state, [e.target.id]: e.target.value });
@@ -31,80 +31,72 @@ function ContactForm(props) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    firebase
-      .database()
-      .ref("/contact/")
-      .push(
-        {
-          name: state.name,
-          phno: state.phno,
+    fetch(
+      "https://covid-focus-sycoss.herokuapp.com/admin/add/notices/veloor_panchayat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localData.token}`,
         },
-        (err) => {
-          if (!err) {
-            props.setAlert({
-              type: "success",
-              title: "Saved successfully",
-              content: "",
-            });
-            props.fetchData();
-            props.setAddNew(false);
-          } else {
-            props.setAlert({
-              type: "danger",
-              title: "Error!",
-              content: "Sorry you don't have access",
-            });
-            setIsLoading(false);
-          }
-        }
-      );
+        body: JSON.stringify({
+          title: state.title,
+          description: state.description,
+        }),
+      }
+    ).then((res) => {
+      res
+        .json()
+        .then((body) => {
+          if (!res.ok) throw Error(body.message);
+          fetchData();
+          setAddNew(false);
+        })
+        .catch((err) => console.log(err));
+    });
   };
 
   const editData = () => {
     setIsLoading(true);
     setUploadPercent(101);
 
-    firebase
-      .database()
-      .ref("/contact/" + props.Key)
-      .update(
-        {
-          name: state.name,
-          phno: state.phno,
+    fetch(
+      "https://covid-focus-sycoss.herokuapp.com/admin/update/notices/veloor_panchayat",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localData.token}`,
         },
-        (err) => {
-          if (!err) {
-            props.setAlert({
-              type: "success",
-              title: "Saved successfully",
-              content: "",
-            });
-            props.fetchData();
-            props.setAddNew(false);
-          } else {
-            props.setAlert({
-              type: "danger",
-              title: "Error!",
-              content: "Sorry you don't have access",
-            });
-            setIsLoading(false);
-          }
-        }
-      );
+        body: JSON.stringify({
+          title: state.title,
+          description: state.description,
+        }),
+      }
+    ).then((res) => {
+      res
+        .json()
+        .then((body) => {
+          if (!res.ok) throw Error(body.message);
+          fetchData();
+          setAddNew(false);
+        })
+        .catch((err) => console.log(err));
+    });
   };
 
   const formSubmit = (e) => {
     e.preventDefault();
 
     let content = "";
-    if (state.name === "") {
-      content = "Name is required";
-    } else if (state.phno === "") {
-      content = "Phone no is required";
+    if (state.title === "") {
+      content = "Title is required";
+    } else if (state.description === "") {
+      content = "Description is required";
     }
 
     if (content !== "") {
-      props.setAlert({
+      setAlert({
         type: "danger",
         title: "Error!",
         content: content,
@@ -119,8 +111,8 @@ function ContactForm(props) {
 
   const formCancel = (e) => {
     e.preventDefault();
-    props.setAlert("");
-    props.setAddNew(false);
+    setAlert("");
+    setAddNew(false);
   };
 
   return (
@@ -133,39 +125,39 @@ function ContactForm(props) {
             <div className="bg-white mb-5 sm:mb-0 rounded-lg sm:rounded-none overflow-hidden relative">
               <div className="px-6 py-4">
                 <label
-                  htmlFor="name"
+                  htmlFor="title"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Name
+                  Title
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="name"
-                    id="name"
+                    id="title"
                     className="focus:border-gray-800 flex-1 block w-full rounded-md sm:text-sm border-gray-300 border p-3"
-                    placeholder="Enter name"
-                    value={state.name}
+                    placeholder="Enter title"
+                    value={state.title}
                     onChange={formHandler}
-                    autoFocus
+                    autoFocus={edit ? false : true}
+                    disabled={edit ? true : false}
                   />
                 </div>
 
                 <label
-                  htmlFor="phno"
+                  htmlFor="description"
                   className="block text-sm font-medium text-gray-700 mt-4"
                 >
-                  Phone no
+                  Description
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     type="text"
-                    name="phno"
-                    id="phno"
+                    id="description"
                     className="focus:border-gray-800 flex-1 block w-full rounded-md sm:text-sm border-gray-300 border p-3"
-                    placeholder="Enter phone no"
-                    value={state.phno}
+                    placeholder="Enter description"
+                    value={state.description}
                     onChange={formHandler}
+                    autoFocus={edit ? true : false}
                   />
                 </div>
               </div>
@@ -192,4 +184,4 @@ function ContactForm(props) {
   );
 }
 
-export default ContactForm;
+export default NeedsForm;

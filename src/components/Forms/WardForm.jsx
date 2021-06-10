@@ -38,7 +38,7 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch("https://covid-focus-sycoss.herokuapp.com/admin/add/wards/hell", {
+    fetch("https://covid-focus-sycoss.herokuapp.com/admin/add/wards/veloor", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

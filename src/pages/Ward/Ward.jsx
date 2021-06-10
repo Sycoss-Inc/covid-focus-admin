@@ -46,15 +46,15 @@ function Ward() {
     ]);
 
     fetch(
-      "https://covid-focus-sycoss.herokuapp.com/client/wards?panchayat=hell&id=5"
+      "https://covid-focus-sycoss.herokuapp.com/client/wards?panchayat=veloor&id=5"
     ).then((res) =>
       res
         .json()
         .then((body) => {
-          console.log(body);
           if (!res.ok) throw Error(body.message);
           else {
-            let data = body.message.reverse();
+            let data = body.message;
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
             setData(data);
             getActive(data);
             getRate(data);
