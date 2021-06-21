@@ -8,7 +8,7 @@ import Loader from "../../components/Loaders/ContentLoader";
 function Panchayat() {
   const [data, setData] = useState(null);
   const [addNew, setAddNew] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  // const [isDisabled, setIsDisabled] = useState(false);
   const [alert, setAlert] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,15 +28,15 @@ function Panchayat() {
           else {
             let data = body.message;
             data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            let date = new Date(data[0].date);
-            let dateNow = new Date();
-            let date1 = `${date.getDate()}/${
-              date.getMonth() + 1
-            }/${date.getFullYear()}`;
-            let date2 = `${dateNow.getDate()}/${
-              dateNow.getMonth() + 1
-            }/${dateNow.getFullYear()}`;
-            if (date1 === date2) setIsDisabled(true);
+            // let date = new Date(data[0].date);
+            // let dateNow = new Date();
+            // let date1 = `${date.getDate()}/${
+            //   date.getMonth() + 1
+            // }/${date.getFullYear()}`;
+            // let date2 = `${dateNow.getDate()}/${
+            //   dateNow.getMonth() + 1
+            // }/${dateNow.getFullYear()}`;
+            // if (date1 === date2) setIsDisabled(true);
             setData(data);
             setIsLoading(false);
           }
@@ -61,18 +61,14 @@ function Panchayat() {
           <h2 className="text-lg font-medium">വെല്ലൂർ ഗ്രാമപഞ്ചായത്ത്</h2>
           {!addNew ? (
             data ? (
-              !isDisabled ? (
-                <>
-                  <button
-                    className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-4 mt-5 rounded focus:outline-none"
-                    onClick={() => setAddNew(true)}
-                  >
-                    <i className="fas fa-plus"></i> Add Data
-                  </button>
-                </>
-              ) : (
-                ""
-              )
+              <>
+                <button
+                  className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-4 mt-5 rounded focus:outline-none"
+                  onClick={() => setAddNew(true)}
+                >
+                  <i className="fas fa-plus"></i> Add Data
+                </button>
+              </>
             ) : (
               ""
             )

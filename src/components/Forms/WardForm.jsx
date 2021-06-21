@@ -103,7 +103,6 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
                                 onChange={(e) => {
                                   formHandler(i, "active", e.target.value);
                                 }}
-                                autoFocus
                               />
                             </div>
                             {data.length % 2 !== 0 && i === data.length - 2 ? (
@@ -148,7 +147,6 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
                                 onChange={(e) => {
                                   formHandler(i, "rate", e.target.value);
                                 }}
-                                autoFocus
                               />
                             </div>
                             {data.length % 2 !== 0 && i === data.length - 2 ? (
@@ -193,7 +191,6 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
                                 onChange={(e) => {
                                   formHandler(i, "positive", e.target.value);
                                 }}
-                                autoFocus
                               />
                             </div>
                             {data.length % 2 !== 0 && i === data.length - 2 ? (
@@ -238,7 +235,6 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
                                 onChange={(e) => {
                                   formHandler(i, "negative", e.target.value);
                                 }}
-                                autoFocus
                               />
                             </div>
                             {data.length % 2 !== 0 && i === data.length - 2 ? (

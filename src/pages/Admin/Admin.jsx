@@ -2,7 +2,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 //Components
 import Sidebar from "../../components/Sidebar/Sidebar";
 //Pages
-import Dashboard from "../Dashboard/Dashboard";
+// import Dashboard from "../Dashboard/Dashboard";
 import Panchayat from "../Panchayat/Panchayat";
 import Ward from "../Ward/Ward";
 import Needs from "../Needs/Needs";
@@ -16,12 +16,12 @@ function Admin(props) {
       <div className="relative flex flex-col ml-0 sm:ml-14 lg:ml-64 h-screen">
         <div className="flex-grow bg-gray-200 pb-10">
           <Switch>
-            <Route path="/dashboard" exact component={Dashboard} />
+            {/* <Route path="/dashboard" exact component={Dashboard} /> */}
             <Route path="/panchayat" exact component={Panchayat} />
             <Route path="/ward" exact component={Ward} />
             <Route path="/needs" exact component={Needs} />
             <Route path="/notices" exact component={Notices} />
-            <Redirect path="*" to="/dashboard" />
+            <Redirect path="*" to="/panchayat" />
           </Switch>
         </div>
         {/* Footer */}

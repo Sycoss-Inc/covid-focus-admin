@@ -96,7 +96,7 @@ function Sidebar(props) {
         </div>
 
         <nav className="mt-10">
-          <button
+          {/* <button
             className={
               "flex items-center py-3 lg:py-2 px-4 lg:px-8 w-full focus:outline-none " +
               (route === "/dashboard" ? selected : unselected)
@@ -113,6 +113,20 @@ function Sidebar(props) {
           <button
             className={
               "flex items-center mt-5 py-3 lg:py-2 px-4 lg:px-8 w-full focus:outline-none " +
+              (route === "/panchayat" ? selected : unselected)
+            }
+            onClick={() => {
+              history.push("/panchayat");
+              setRoute("/panchayat");
+            }}
+          >
+            <i className="fas fa-home"></i>
+            <span className="mx-4 font-medium lg:block hidden">Panchayat</span>
+          </button> */}
+
+          <button
+            className={
+              "flex items-center py-3 lg:py-2 px-4 lg:px-8 w-full focus:outline-none " +
               (route === "/panchayat" ? selected : unselected)
             }
             onClick={() => {
@@ -193,7 +207,7 @@ function Sidebar(props) {
         </div>
 
         <nav className="mt-10">
-          <button
+          {/* <button
             className={
               "menu-btn flex items-center py-2 px-8 w-full focus:outline-none " +
               (route === "/dashboard" ? selected : unselected)
@@ -210,6 +224,20 @@ function Sidebar(props) {
           <button
             className={
               "menu-btn flex items-center mt-5 py-2 px-8 w-full focus:outline-none " +
+              (route === "/panchayat" ? selected : unselected)
+            }
+            onClick={() => {
+              history.push("/panchayat");
+              setRoute("/panchayat");
+            }}
+          >
+            <i className="fas fa-home"></i>
+            <span className="mx-4 font-medium block">Panchayat</span>
+          </button> */}
+
+          <button
+            className={
+              "menu-btn flex items-center py-2 px-8 w-full focus:outline-none " +
               (route === "/panchayat" ? selected : unselected)
             }
             onClick={() => {
