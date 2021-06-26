@@ -79,7 +79,9 @@ function Sidebar(props) {
             <i className="fas fa-bars"></i>
           </button>
           <img className="w-12 h-12" src={logo} alt="Logo" />
-          <h1 className="text-gray-100 text-2xl pt-1 pl-2 block">Admin</h1>
+          <h1 className="text-gray-100 text-2xl pt-1 pl-2 block">
+            Covid Focus Admin
+          </h1>
         </div>
       </div>
 
@@ -91,6 +93,8 @@ function Sidebar(props) {
         <div className="flex items-center justify-center mt-10">
           <img className="w-9 lg:w-12 py-1.5 lg:py-0" src={logo} alt="Logo" />
           <h1 className="text-gray-100 text-2xl mb-2 ml-2 lg:block hidden">
+            Covid Focus
+            <br />
             Admin
           </h1>
         </div>
@@ -203,7 +207,11 @@ function Sidebar(props) {
       >
         <div className="flex items-center justify-center mt-10">
           <img className="w-12" src={logo} alt="Logo" />
-          <h1 className="text-gray-100 text-2xl mb-2 ml-2 block">Admin</h1>
+          <h1 className="text-gray-100 text-2xl mb-2 ml-2 block">
+            Covid Focus
+            <br />
+            Admin
+          </h1>
         </div>
 
         <nav className="mt-10">

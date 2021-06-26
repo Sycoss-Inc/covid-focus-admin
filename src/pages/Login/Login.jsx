@@ -119,7 +119,7 @@ function Login(props) {
           <div className="flex content-center items-center justify-center h-full">
             <div className="w-full sm:w-6/12 lg:w-5/12 xl:w-4/12 2xl:w-3/12 px-4">
               <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
-                <img className="mx-auto h-48 w-48" src={logo} alt="logo" />
+                <img className="mx-auto h-40 w-40 mt-2" src={logo} alt="logo" />
                 <div className="flex-auto px-4 py-10 pt-0 relative">
                   {isLoading ? <Loader /> : ""}
                   <div className="text-gray-500 text-center mb-3 font-bold">
