@@ -60,18 +60,14 @@ function Panchayat() {
         <div className="w-full p-6 pb-0">
           <h2 className="text-lg font-medium">വെല്ലൂർ ഗ്രാമപഞ്ചായത്ത്</h2>
           {!addNew ? (
-            data ? (
-              <>
-                <button
-                  className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-4 mt-5 rounded focus:outline-none"
-                  onClick={() => setAddNew(true)}
-                >
-                  <i className="fas fa-plus"></i> Add Data
-                </button>
-              </>
-            ) : (
-              ""
-            )
+            <>
+              <button
+                className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-4 mt-5 rounded focus:outline-none"
+                onClick={() => setAddNew(true)}
+              >
+                <i className="fas fa-plus"></i> Add Data
+              </button>
+            </>
           ) : (
             ""
           )}
