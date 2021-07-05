@@ -40,7 +40,7 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
     setUploadPercent(101);
 
     let sendData = state;
-    sendData.push(date);
+    sendData.push({ date: date });
 
     fetch("http://localhost:8000/admin/add/wards/velur", {
       method: "POST",

@@ -34,7 +34,10 @@ function Panchayat() {
             setIsLoading(false);
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        })
     );
   };
 
