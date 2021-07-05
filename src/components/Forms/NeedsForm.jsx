@@ -31,7 +31,7 @@ function NeedsForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch("http://localhost:8000/admin/add/needs/veloor_panchayat", {
+    fetch("http://localhost:8000/admin/add/needs/velur_panchayat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function NeedsForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch("http://localhost:8000/admin/update/needs/veloor_panchayat", {
+    fetch("http://localhost:8000/admin/update/needs/velur_panchayat", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

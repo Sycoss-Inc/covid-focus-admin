@@ -14,7 +14,7 @@ function NeedsCard({ data, fetchData, setAlert }) {
   localData = JSON.parse(localData);
 
   const deleteCard = () => {
-    fetch("http://localhost:8000/admin/delete/notices/veloor_panchayat", {
+    fetch("http://localhost:8000/admin/delete/notices/velur_panchayat", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

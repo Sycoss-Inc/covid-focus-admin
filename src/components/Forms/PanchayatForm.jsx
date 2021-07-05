@@ -39,7 +39,7 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch("http://localhost:8000/admin/add/panchayat/veloor_panchayat", {
+    fetch("http://localhost:8000/admin/add/panchayat/velur_panchayat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch("http://localhost:8000/admin/update/panchayat/veloor_panchayat", {
+    fetch("http://localhost:8000/admin/update/panchayat/velur_panchayat", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
