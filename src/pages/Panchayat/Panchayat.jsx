@@ -27,17 +27,10 @@ function Panchayat() {
           if (!res.ok) throw Error(body.message);
           else {
             let data = body.message;
-            data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            // let date = new Date(data[0].date);
-            // let dateNow = new Date();
-            // let date1 = `${date.getDate()}/${
-            //   date.getMonth() + 1
-            // }/${date.getFullYear()}`;
-            // let date2 = `${dateNow.getDate()}/${
-            //   dateNow.getMonth() + 1
-            // }/${dateNow.getFullYear()}`;
-            // if (date1 === date2) setIsDisabled(true);
-            setData(data);
+            if (data) {
+              data.sort((a, b) => new Date(b.date) - new Date(a.date));
+              setData(data);
+            }
             setIsLoading(false);
           }
         })

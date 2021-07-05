@@ -53,8 +53,10 @@ function Ward() {
             if (!res.ok) throw Error(body.message);
             else {
               let data = body.message;
-              data.sort((a, b) => new Date(b.date) - new Date(a.date));
-              setData(data);
+              if (data) {
+                data.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setData(data);
+              }
               getActive(data);
               getRate(data);
               getPositive(data);
