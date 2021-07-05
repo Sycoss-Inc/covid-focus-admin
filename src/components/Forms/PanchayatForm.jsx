@@ -4,6 +4,7 @@ import Loader from "../Loaders/FormLoader";
 
 function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
   const [state, setState] = useState({
+    date: new Date().toISOString().substr(0, 10),
     total_cases: "",
     todays_cases: "",
     positive_rate: "",
@@ -20,6 +21,7 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
   useEffect(() => {
     if (edit) {
       setState({
+        date: data.date,
         total_cases: data.total_cases,
         todays_cases: data.todays_cases,
         positive_rate: data.positive_rate,
@@ -37,23 +39,21 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch(
-      "https://covid-focus-sycoss.herokuapp.com/admin/add/panchayat/veloor_panchayat",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localData.token}`,
-        },
-        body: JSON.stringify({
-          totalCases: state.total_cases,
-          todaysCases: state.todays_cases,
-          positiveRate: state.positive_rate,
-          recovered: state.recovered,
-          deaths: state.deaths,
-        }),
-      }
-    ).then((res) => {
+    fetch("http://localhost:8000/admin/add/panchayat/veloor_panchayat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localData.token}`,
+      },
+      body: JSON.stringify({
+        date: state.date,
+        totalCases: state.total_cases,
+        todaysCases: state.todays_cases,
+        positiveRate: state.positive_rate,
+        recovered: state.recovered,
+        deaths: state.deaths,
+      }),
+    }).then((res) => {
       res
         .json()
         .then((body) => {
@@ -69,23 +69,20 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch(
-      "https://covid-focus-sycoss.herokuapp.com/admin/update/panchayat/veloor_panchayat",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localData.token}`,
-        },
-        body: JSON.stringify({
-          total_cases: state.total_cases,
-          todays_cases: state.todays_cases,
-          positive_rate: state.positive_rate,
-          recovered: state.recovered,
-          deaths: state.deaths,
-        }),
-      }
-    ).then((res) => {
+    fetch("http://localhost:8000/admin/update/panchayat/veloor_panchayat", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localData.token}`,
+      },
+      body: JSON.stringify({
+        total_cases: state.total_cases,
+        todays_cases: state.todays_cases,
+        positive_rate: state.positive_rate,
+        recovered: state.recovered,
+        deaths: state.deaths,
+      }),
+    }).then((res) => {
       res
         .json()
         .then((body) => {
@@ -100,8 +97,12 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
   const formSubmit = (e) => {
     e.preventDefault();
 
+    console.log(state);
+
     let content = "";
-    if (state.total_cases === "") {
+    if (state.date === "") {
+      content = "Date is required";
+    } else if (state.total_cases === "") {
       content = "Total cases is required";
     } else if (state.todays_cases === "") {
       content = "Today's cases is required";
@@ -143,8 +144,25 @@ function PanchayatForm({ setAddNew, setAlert, fetchData, data, edit }) {
             <div className="bg-white mb-5 sm:mb-0 rounded-lg sm:rounded-none overflow-hidden relative">
               <div className="px-6 py-4">
                 <label
-                  htmlFor="total_cases"
+                  htmlFor="date"
                   className="block text-sm font-medium text-gray-700"
+                >
+                  Date
+                </label>
+                <div className="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="date"
+                    name="date"
+                    id="date"
+                    className="focus:border-gray-800 flex-1 block w-full bg-white rounded-md sm:text-sm border-gray-300 border p-3"
+                    value={state.date}
+                    onChange={formHandler}
+                  />
+                </div>
+
+                <label
+                  htmlFor="total_cases"
+                  className="block text-sm font-medium text-gray-700 mt-4"
                 >
                   Total Cases
                 </label>

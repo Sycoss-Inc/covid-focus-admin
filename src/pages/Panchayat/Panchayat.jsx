@@ -19,7 +19,7 @@ function Panchayat() {
   const fetchData = () => {
     setIsLoading(true);
     fetch(
-      "https://covid-focus-sycoss.herokuapp.com/client/panchayat?panchayat=veloor_panchayat&records=5"
+      "http://localhost:8000/client/panchayat?panchayat=veloor_panchayat&records=5"
     ).then((res) =>
       res
         .json()

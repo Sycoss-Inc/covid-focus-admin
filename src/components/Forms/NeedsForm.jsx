@@ -31,20 +31,17 @@ function NeedsForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch(
-      "https://covid-focus-sycoss.herokuapp.com/admin/add/needs/veloor_panchayat",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localData.token}`,
-        },
-        body: JSON.stringify({
-          title: state.title,
-          description: state.description,
-        }),
-      }
-    ).then((res) => {
+    fetch("http://localhost:8000/admin/add/needs/veloor_panchayat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localData.token}`,
+      },
+      body: JSON.stringify({
+        title: state.title,
+        description: state.description,
+      }),
+    }).then((res) => {
       res
         .json()
         .then((body) => {
@@ -60,20 +57,17 @@ function NeedsForm({ setAddNew, setAlert, fetchData, data, edit }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch(
-      "https://covid-focus-sycoss.herokuapp.com/admin/update/needs/veloor_panchayat",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localData.token}`,
-        },
-        body: JSON.stringify({
-          title: state.title,
-          description: state.description,
-        }),
-      }
-    ).then((res) => {
+    fetch("http://localhost:8000/admin/update/needs/veloor_panchayat", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localData.token}`,
+      },
+      body: JSON.stringify({
+        title: state.title,
+        description: state.description,
+      }),
+    }).then((res) => {
       res
         .json()
         .then((body) => {

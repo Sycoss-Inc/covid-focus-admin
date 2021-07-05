@@ -14,19 +14,16 @@ function NeedsCard({ data, fetchData, setAlert }) {
   localData = JSON.parse(localData);
 
   const deleteCard = () => {
-    fetch(
-      "https://covid-focus-sycoss.herokuapp.com/admin/delete/notices/veloor_panchayat",
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localData.token}`,
-        },
-        body: JSON.stringify({
-          title: data.title,
-        }),
-      }
-    ).then((res) => {
+    fetch("http://localhost:8000/admin/delete/notices/veloor_panchayat", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localData.token}`,
+      },
+      body: JSON.stringify({
+        title: data.title,
+      }),
+    }).then((res) => {
       res
         .json()
         .then((body) => {

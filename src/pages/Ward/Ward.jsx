@@ -45,28 +45,27 @@ function Ward() {
       "പുലിയന്നൂർ",
     ]);
 
-    fetch(
-      "https://covid-focus-sycoss.herokuapp.com/client/wards?panchayat=veloor&id=5"
-    ).then((res) =>
-      res
-        .json()
-        .then((body) => {
-          if (!res.ok) throw Error(body.message);
-          else {
-            let data = body.message;
-            data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            setData(data);
-            getActive(data);
-            getRate(data);
-            getPositive(data);
-            getNegative(data);
+    fetch("http://localhost:8000/client/wards?panchayat=veloor&id=5").then(
+      (res) =>
+        res
+          .json()
+          .then((body) => {
+            if (!res.ok) throw Error(body.message);
+            else {
+              let data = body.message;
+              data.sort((a, b) => new Date(b.date) - new Date(a.date));
+              setData(data);
+              getActive(data);
+              getRate(data);
+              getPositive(data);
+              getNegative(data);
+              setIsLoading(false);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
             setIsLoading(false);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setIsLoading(false);
-        })
+          })
     );
   };
 

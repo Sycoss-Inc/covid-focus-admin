@@ -31,7 +31,7 @@ function Login(props) {
 
   const loginHandler = () => {
     setIsLoading(true);
-    fetch("https://covid-focus-sycoss.herokuapp.com/auth/login", {
+    fetch("http://localhost:8000/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

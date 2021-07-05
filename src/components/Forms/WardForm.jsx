@@ -4,6 +4,7 @@ import Loader from "../Loaders/FormLoader";
 
 function WardForm({ setAddNew, setAlert, fetchData, data }) {
   const [state, setState] = useState(null);
+  const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
   const [isLoading, setIsLoading] = useState(false);
   const [uploadPercent, setUploadPercent] = useState(0);
 
@@ -38,13 +39,16 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
     setIsLoading(true);
     setUploadPercent(101);
 
-    fetch("https://covid-focus-sycoss.herokuapp.com/admin/add/wards/veloor", {
+    let sendData = state;
+    sendData.push(date);
+
+    fetch("http://localhost:8000/admin/add/wards/veloor", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localData.token}`,
       },
-      body: JSON.stringify(state),
+      body: JSON.stringify(sendData),
     }).then((res) => {
       res
         .json()
@@ -76,6 +80,26 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
         <form autoComplete="off">
           <div className="relative">
             {isLoading ? <Loader uploadPercent={uploadPercent} /> : ""}
+
+            <label
+              htmlFor="date"
+              className="block text-lg font-medium text-gray-700 mt-4 ml-6"
+            >
+              Date
+            </label>
+            <div className="mt-1 flex px-16">
+              <input
+                type="date"
+                name="date"
+                id="date"
+                className="focus:border-gray-800 flex-1 block w-full bg-white rounded-md sm:text-sm border-gray-300 border p-3"
+                value={date}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setDate(e.target.value);
+                }}
+              />
+            </div>
 
             {/* Active */}
             <div className="w-full p-6 pb-0">
