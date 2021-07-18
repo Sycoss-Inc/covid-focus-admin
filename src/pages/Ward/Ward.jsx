@@ -45,7 +45,7 @@ function Ward() {
       "പുലിയന്നൂർ",
     ]);
 
-    fetch("http://localhost:8000/client/wards?panchayat=velur&id=5").then(
+    fetch("http://14.139.189.227:8000/client/wards?panchayat=velur&id=5").then(
       (res) =>
         res
           .json()

@@ -31,7 +31,7 @@ function Login(props) {
 
   const loginHandler = () => {
     setIsLoading(true);
-    fetch("http://localhost:8000/auth/login", {
+    fetch("http://14.139.189.227:8000/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

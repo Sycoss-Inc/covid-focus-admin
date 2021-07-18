@@ -19,7 +19,7 @@ function Panchayat() {
   const fetchData = () => {
     setIsLoading(true);
     fetch(
-      "http://localhost:8000/client/panchayat?panchayat=velur_panchayat&records=5"
+      "http://14.139.189.227:8000/client/panchayat?panchayat=velur_panchayat&records=5"
     ).then((res) =>
       res
         .json()

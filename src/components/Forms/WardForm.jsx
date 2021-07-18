@@ -42,7 +42,7 @@ function WardForm({ setAddNew, setAlert, fetchData, data }) {
     let sendData = state;
     sendData.push({ date: date });
 
-    fetch("http://localhost:8000/admin/add/wards/velur", {
+    fetch("http://14.139.189.227:8000/admin/add/wards/velur", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
